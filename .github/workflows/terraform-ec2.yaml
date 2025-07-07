@@ -26,6 +26,6 @@ jobs:
             
             - name: Checking terraform intallation
               run: |
-               terrafrom --version
+               terraform --version
               
                 
