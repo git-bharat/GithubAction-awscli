@@ -1,0 +1,31 @@
+name: Terraform-Workflow
+on: push
+jobs:
+    terraform-code:
+
+        name: ec2-instance-creation
+        runs-on: ubuntu-latest
+        steps:
+            - uses: hashicorp/setup-terraform@v3
+              with:
+                terraform_version: "1.12.2"
+
+            - name: Checkout to github
+              uses: actions/checkout@v4
+            
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+               aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }} # Use the secret you stored
+               aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # Use the secret you stored
+               aws-region: us-east-1 # Specify your AWS region
+
+            - name: Checking aws cli
+              run: |
+               aws --version
+            
+            - name: Checking terraform intallation
+              run: |
+               terrafrom --version
+              
+                
