@@ -26,6 +26,7 @@ jobs:
             
             - name: Checking terraform intallation
               run: |
-               terraform --version
+               terraform init
+               terraform apply -auto-approve
               
                 
